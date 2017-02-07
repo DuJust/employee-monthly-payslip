@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//= require tether
+//= require bootstrap-sprockets
+//= require lodash
+//= require employee_payslip
 //= require_tree .
