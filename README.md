@@ -3,8 +3,9 @@ Employee Monthly Payslip
 
 ## Assumptions
 
-Base on [Test Assignment](TEST_ASSIGNMENT.md) here, even though the app is call `monthly payslip`, but I assume that the app will show payslip of calendar month by given `payment start date`, and remove the extract dates.
-For example, if the `payment start date` is `01 March - 15 May`, it will show 2 month salary, and the payslip is between `01 March - 30 April`, because 15 May is not the pay day. This example file is in `spec/fixtures/test2.csv`.
+Base on [Test Assignment](TEST_ASSIGNMENT.md) here, even though the app is called `monthly payslip`, I assume that the app will show payslip of calendar month by given `payment start date`, and remove the extract dates.
+
+For example, when the `payment start date` is `01 March - 15 May`, it will show 2 month salary between `01 March - 30 April`, because 15 May is not the pay day. This example file is in `spec/fixtures/test2.csv`.
 
 ## Prerequisites
 
