@@ -20,9 +20,16 @@ RSpec.describe Payslip do
   describe '#pay_period' do
     pending("todo...")
   end
+
   describe '#gross_income' do
-    pending("todo...")
+    let(:annual_salary) { 60050 }
+
+    it 'should divide months of year and round down' do
+      payslip.annual_salary = annual_salary
+      expect(payslip.gross_income).to eq(5004)
+    end
   end
+
   describe '#income_tax' do
     pending("todo...")
   end
