@@ -1,10 +1,4 @@
-<% if flash[:alert] %>
-  <div class="alert alert-danger" role="alert">
-    <%= flash[:alert] %>
-  </div>
-<% end %>
-
-<%= form_tag(output_payslips_path, method: :post, multipart: true) do %>
+<%= form_tag(upload_payslips_path, method: :post, multipart: true) do %>
   <div class="form-group">
     <label class="custom-file">
       <%= file_field_tag 'attachment', class: 'custom-file-input',

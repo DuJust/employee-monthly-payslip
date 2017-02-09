@@ -1,0 +1,23 @@
+<% if flash.now[:alert] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash.now[:alert] %>
+  </div>
+<% end %>
+
+<% if @payslip_set && @payslip_set.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+    <h2>There're <%= pluralize(@payslip_set.errors.count, "error") %> in csv:</h2>
+
+    <ul>
+      <% @payslip_set.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<%= render('form') %>
+
+<% if @payslip_set && !@payslip_set.errors.any? %>
+  <%= render('table') %>
+<% end %>

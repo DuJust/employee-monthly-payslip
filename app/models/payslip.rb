@@ -1,4 +1,7 @@
 class Payslip
+  include ActiveModel::Validations
+  validates_with PayslipValidator
+
   attr_accessor :first_name, :last_name, :annual_salary, :super_rate, :payment_start_date
 
   def name

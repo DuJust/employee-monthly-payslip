@@ -1,10 +1,9 @@
 Rails.application.routes.draw do
-  resources :payslips do
+  resources :payslips, only: [:index] do
     collection do
-      get :input
-      post :output
+      post :upload
     end
   end
 
-  root 'payslips#input'
+  root 'payslips#index'
 end

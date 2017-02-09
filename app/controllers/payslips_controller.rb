@@ -1,14 +1,15 @@
 class PayslipsController < ApplicationController
-  def input
+  def index
   end
 
-  def output
+  def upload
     file_path = params[:attachment].try(:path)
     unless file_path
-      flash[:alert] = 'There is something wrong with your attachment, please try again.'
-      redirect_to input_payslips_path
+      flash.now[:alert] = 'There is something wrong with your attachment, please try again.'
     else
       @payslip_set = PayslipSet.new(file_path)
     end
+
+    render :index
   end
 end

@@ -1,18 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe PayslipsController, type: :controller do
-  describe '#input' do
-    subject { get :input }
+  describe '#index' do
+    subject { get :index }
 
-    it { is_expected.to render_template(:input) }
+    it { is_expected.to render_template(:index) }
   end
 
   describe '#output' do
     let(:fixture_file) { 'test.csv' }
     let(:params) { { attachment: fixture_file_upload(fixture_file) } }
-    subject { post :output, params: params }
+    subject { post :upload, params: params }
 
-    it { is_expected.to render_template(:output) }
+    it { is_expected.to render_template(:index) }
     it 'should assign payslip set' do
       subject
       expect(assigns(:payslip_set)).not_to be_nil
@@ -23,10 +23,10 @@ RSpec.describe PayslipsController, type: :controller do
 
       it 'should render alert message' do
         subject
-        expect(flash[:alert]).to eq('There is something wrong with your attachment, please try again.')
+        expect(flash.now[:alert]).to eq('There is something wrong with your attachment, please try again.')
       end
 
-      it { is_expected.to redirect_to(input_payslips_path) }
+      it { is_expected.to render_template(:index) }
     end
 
     context 'when attachment does not exist' do
@@ -34,10 +34,10 @@ RSpec.describe PayslipsController, type: :controller do
 
       it 'should render alert message' do
         subject
-        expect(flash[:alert]).to eq('There is something wrong with your attachment, please try again.')
+        expect(flash.now[:alert]).to eq('There is something wrong with your attachment, please try again.')
       end
 
-      it { is_expected.to redirect_to(input_payslips_path) }
+      it { is_expected.to render_template(:index) }
     end
   end
 end
