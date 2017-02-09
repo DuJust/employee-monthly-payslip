@@ -1,0 +1,18 @@
+<% if flash[:alert] %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
+
+<%= form_tag(output_payslips_path, method: :post, multipart: true) do %>
+  <div class="form-group">
+    <label class="custom-file">
+      <%= file_field_tag 'attachment', class: 'custom-file-input',
+                         accept:              ".csv",
+                         data:                { toggle: 'custom-file', target: '#attachment-text' } %>
+      <span id='attachment-text' class="custom-file-control" data-content='Choose File'></span>
+    </label>
+  </div>
+
+  <%= submit_tag('Submit', class: 'btn btn-primary') %>
+<% end %>

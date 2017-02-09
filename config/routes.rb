@@ -1,3 +1,10 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :payslips do
+    collection do
+      get :input
+      post :output
+    end
+  end
+
+  root 'payslips#input'
 end
