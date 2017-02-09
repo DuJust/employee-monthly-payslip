@@ -18,7 +18,24 @@ RSpec.describe Payslip do
   end
 
   describe '#pay_period' do
-    pending("todo...")
+    before do
+      payslip.payment_start_date = payment_start_date
+    end
+
+    subject { payslip.pay_period }
+
+    context 'when period is exactly divided by calender month' do
+      let(:payment_start_date) { '01 March - 31 March' }
+      it { is_expected.to eq('01 March - 31 March') }
+    end
+
+    context 'when period is exactly divided by calender month' do
+      let(:payment_start_date) { '01 March - 01 April' }
+
+      it 'should remove extract dates' do
+        is_expected.to eq('01 March - 31 March')
+      end
+    end
   end
 
   describe '#gross_income' do
