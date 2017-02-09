@@ -4,6 +4,9 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'ffaker'
 require 'shoulda-matchers'
+require 'simplecov'
+
+SimpleCov.start 'rails'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 

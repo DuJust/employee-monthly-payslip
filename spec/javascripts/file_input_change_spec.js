@@ -4,21 +4,26 @@
 
 describe('FileInputChange', function () {
   describe('on file input change', function () {
-    var $element;
+    var $element, onChange;
 
     beforeEach(function () {
-      $('body').off('change', 'input[type="file"][data-toggle="custom-file"]');
+      $('body').off('change', '**');
 
       fixture.set('<input type="file" data-toggle="custom-file">');
+
+      onChange = EmployeePayslip.FileInputChange.onChange;
+      EmployeePayslip.FileInputChange.onChange = function () {};
       sinon.spy(EmployeePayslip.FileInputChange, 'onChange');
-      EmployeePayslip.FileInputChange.bindChangeEvent();
     });
 
     afterEach(function () {
+      $('body').off('change', '**');
       EmployeePayslip.FileInputChange.onChange.restore();
+      EmployeePayslip.FileInputChange.onChange = onChange;
     });
 
     it('should call onChange', function () {
+      EmployeePayslip.FileInputChange.bindChangeEvent();
       $element = $('input[type="file"][data-toggle="custom-file"]');
       $element.trigger('change');
 
