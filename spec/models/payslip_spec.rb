@@ -45,7 +45,15 @@ RSpec.describe Payslip do
   end
 
   describe '#net_income' do
-    pending("todo...")
+    let(:annual_salary) { 60050 }
+
+    before do
+      payslip.annual_salary = annual_salary
+    end
+
+    subject { payslip.net_income }
+
+    it { is_expected.to eq(4082) }
   end
   describe '#super_income' do
     pending("todo...")

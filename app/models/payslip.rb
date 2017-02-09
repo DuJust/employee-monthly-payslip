@@ -19,6 +19,7 @@ class Payslip
   end
 
   def net_income
+    gross_income - income_tax
   end
 
   def super_income
