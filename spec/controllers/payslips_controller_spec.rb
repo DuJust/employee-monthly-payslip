@@ -13,6 +13,10 @@ RSpec.describe PayslipsController, type: :controller do
     subject { post :output, params: params }
 
     it { is_expected.to render_template(:output) }
+    it 'should assign payslip set' do
+      subject
+      expect(assigns(:payslip_set)).not_to be_nil
+    end
 
     context 'when attachment is empty' do
       let(:params) { { attachment: '' } }

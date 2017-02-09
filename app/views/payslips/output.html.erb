@@ -1,0 +1,24 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th>name</th>
+    <th>pay period</th>
+    <th>gross income</th>
+    <th>income tax</th>
+    <th>net income</th>
+    <th>super</th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @payslip_set.payslips.each do |payslip| %>
+    <tr>
+      <td><%= payslip.name %></td>
+      <td><%= payslip.pay_period %></td>
+      <td><%= payslip.gross_income %></td>
+      <td><%= payslip.income_tax %></td>
+      <td><%= payslip.net_income %></td>
+      <td><%= payslip.super_income %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
