@@ -1,6 +1,4 @@
 class Payslip
-  MONTHS_OF_YEAR = 12
-
   attr_accessor :first_name, :last_name, :annual_salary, :super_rate, :payment_start_date
 
   def name
@@ -8,34 +6,32 @@ class Payslip
   end
 
   def pay_period
-    begin_date, end_date = payment_start_date.split('-').map(&:to_date)
-    end_period_date      = begin_date + month_distance_of_date(begin_date, end_date).month - 1.day
-    "#{date_format(begin_date)} - #{date_format(end_period_date)}"
+    calendar_month.period
   end
 
   def gross_income
-    (BigDecimal.new(annual_salary) / MONTHS_OF_YEAR).round
+    salary.gross_income * calendar_month.distance
   end
 
   def income_tax
-    TaxCalculator.new(annual_salary).execute
+    salary.income_tax * calendar_month.distance
   end
 
   def net_income
-    gross_income - income_tax
+    salary.net_income * calendar_month.distance
   end
 
   def super_income
-    (gross_income * (super_rate.to_f / 100)).round
+    salary.super_income * calendar_month.distance
   end
 
   private
 
-  def month_distance_of_date(begin_date, end_date)
-    ((end_date + 1.day).month - begin_date.month)
+  def salary
+    @salary ||= Salary.new(annual_salary, super_rate)
   end
 
-  def date_format(one)
-    one.strftime('%d %B')
+  def calendar_month
+    @calendar_month ||= CalendarMonth.new(payment_start_date)
   end
 end
