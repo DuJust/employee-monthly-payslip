@@ -24,15 +24,45 @@ RSpec.describe Payslip do
   describe '#gross_income' do
     let(:annual_salary) { 60050 }
 
-    it 'should divide months of year and round down' do
+    it 'should divide months of year and round' do
       payslip.annual_salary = annual_salary
       expect(payslip.gross_income).to eq(5004)
     end
   end
 
   describe '#income_tax' do
-    pending("todo...")
+    before do
+      payslip.annual_salary = annual_salary
+    end
+
+    subject { payslip.income_tax }
+
+    context 'when annual is between 0 to 18200' do
+      let(:annual_salary) { 18000 }
+      it { is_expected.to eq(0) }
+    end
+
+    context 'when annual is between 18201 to 37000' do
+      let(:annual_salary) { 20000 }
+      it { is_expected.to eq(29) }
+    end
+
+    context 'when annual is between 37001 to 80000' do
+      let(:annual_salary) { 60050 }
+      it { is_expected.to eq(922) }
+    end
+
+    context 'when annual is between 37001 to 80000' do
+      let(:annual_salary) { 120000 }
+      it { is_expected.to eq(2696) }
+    end
+
+    context 'when annual is between 180000 and over' do
+      let(:annual_salary) { 190000 }
+      it { is_expected.to eq(4921) }
+    end
   end
+
   describe '#net_income' do
     pending("todo...")
   end
