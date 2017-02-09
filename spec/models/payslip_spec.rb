@@ -55,7 +55,18 @@ RSpec.describe Payslip do
 
     it { is_expected.to eq(4082) }
   end
+
   describe '#super_income' do
-    pending("todo...")
+    let(:annual_salary) { 60050 }
+    let(:super_rate) { '9%' }
+
+    before do
+      payslip.annual_salary = annual_salary
+      payslip.super_rate    = super_rate
+    end
+
+    subject { payslip.super_income }
+
+    it { is_expected.to eq(450) }
   end
 end

@@ -23,5 +23,6 @@ class Payslip
   end
 
   def super_income
+    (gross_income * (super_rate.to_f / 100)).round
   end
 end
