@@ -7,27 +7,27 @@ RSpec.describe TaxCalculator do
     subject { calculator.execute }
 
     context 'when annual is between 0 to 18200' do
-      let(:annual_salary) { 18000 }
+      let(:annual_salary) { BigDecimal.new(18000) }
       it { is_expected.to eq(0) }
     end
 
     context 'when annual is between 18201 to 37000' do
-      let(:annual_salary) { 20000 }
+      let(:annual_salary) { BigDecimal.new(20000) }
       it { is_expected.to eq(29) }
     end
 
     context 'when annual is between 37001 to 80000' do
-      let(:annual_salary) { 60050 }
+      let(:annual_salary) { BigDecimal.new(60050) }
       it { is_expected.to eq(922) }
     end
 
     context 'when annual is between 37001 to 80000' do
-      let(:annual_salary) { 120000 }
+      let(:annual_salary) { BigDecimal.new(120000) }
       it { is_expected.to eq(2696) }
     end
 
     context 'when annual is between 180000 and over' do
-      let(:annual_salary) { 190000 }
+      let(:annual_salary) { BigDecimal.new(190000) }
       it { is_expected.to eq(4921) }
     end
   end

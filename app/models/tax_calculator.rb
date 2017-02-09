@@ -16,12 +16,12 @@ class TaxCalculator
   end
 
   def execute
-    tax(GRADES.find { |grade| grade.range.cover?(@annual_salary.to_i) })
+    tax(GRADES.find { |grade| grade.range.cover?(@annual_salary) })
   end
 
   private
 
   def tax(grade)
-    ((grade.base + (BigDecimal.new(@annual_salary) - grade.boundary) * grade.rate) / MONTHS_OF_YEAR).round
+    ((grade.base + (@annual_salary - grade.boundary) * grade.rate) / MONTHS_OF_YEAR).round
   end
 end

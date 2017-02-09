@@ -3,9 +3,13 @@ require 'rails_helper'
 RSpec.describe Payslip do
   let(:payslip) { Payslip.new }
   let(:payment_start_date) { '01 March - 31 March' }
+  let(:annual_salary) { '18000' }
+  let(:super_rate) { '9%' }
 
   before do
     payslip.payment_start_date = payment_start_date
+    payslip.annual_salary      = annual_salary
+    payslip.super_rate         = super_rate
 
     allow_any_instance_of(CalendarMonth).to receive(:distance).and_return(2)
   end

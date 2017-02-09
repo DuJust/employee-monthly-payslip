@@ -31,7 +31,7 @@ class Payslip
   private
 
   def salary
-    @salary ||= Salary.new(annual_salary, super_rate)
+    @salary ||= Salary.new(BigDecimal.new(annual_salary), super_rate.to_f)
   end
 
   def calendar_month

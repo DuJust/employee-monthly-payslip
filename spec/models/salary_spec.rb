@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Salary do
-  let(:annual_salary) { 60050 }
-  let(:super_rate) { '9%' }
+  let(:annual_salary) { BigDecimal.new(60050) }
+  let(:super_rate) { Float(9) }
   let(:salary) { Salary.new(annual_salary, super_rate) }
 
   describe '#gross_income' do

@@ -1,7 +1,6 @@
 class CalendarMonth
   def initialize(data_string)
-    @data_string           = data_string
-    @begin_date, @end_date = @data_string.split('-').map(&:to_date)
+    @begin_date, @end_date = data_string.split('-').map(&:to_date)
   end
 
   def period
@@ -10,7 +9,7 @@ class CalendarMonth
   end
 
   def distance
-    ((@end_date + 1.day).month - @begin_date.month)
+    (@end_date + 1.day).month - @begin_date.month
   end
 
   private

@@ -1,5 +1,6 @@
 class Salary
   MONTHS_OF_YEAR = 12
+  PERCENT = 100
 
   attr_accessor :annual_salary, :super_rate
 
@@ -9,7 +10,7 @@ class Salary
   end
 
   def gross_income
-    (BigDecimal.new(@annual_salary) / MONTHS_OF_YEAR).round
+    (@annual_salary / MONTHS_OF_YEAR).round
   end
 
   def income_tax
@@ -21,6 +22,6 @@ class Salary
   end
 
   def super_income
-    (gross_income * (@super_rate.to_f / 100)).round
+    (gross_income * (@super_rate / PERCENT)).round
   end
 end
